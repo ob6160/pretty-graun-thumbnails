@@ -7,10 +7,16 @@ language = "rust"
 manifest_version = 2
 name = "edgy-social"
 service_id = "0zO7yUkgMSM5wDDgqHMTW2"
-backend = "steve"
+[setup.backends]
+  [setup.backends.guim]
+    address = "https://i.guim.co.uk"
+  [setup.backends.news]
+    address = "https://www.theguardian.com"
 [local_server]
   [local_server.backends]
     [local_server.backends.steve]
       url = "https://m.code.dev-theguardian.com"
     [local_server.backends.guim]
       url = "https://i.guim.co.uk"
+    [local_server.backends.news]
+      url = "https://theguardian.com"
