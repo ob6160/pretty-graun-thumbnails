@@ -1,0 +1,16 @@
+# This file describes a Fastly Compute@Edge package. To learn more visit:
+# https://developer.fastly.com/reference/fastly-toml/
+
+authors = ["@ob6160"]
+description = "Generate fun social images for Guardian articles"
+language = "rust"
+manifest_version = 2
+name = "edgy-social"
+service_id = "0zO7yUkgMSM5wDDgqHMTW2"
+backend = "steve"
+[local_server]
+  [local_server.backends]
+    [local_server.backends.steve]
+      url = "https://m.code.dev-theguardian.com"
+    [local_server.backends.guim]
+      url = "https://i.guim.co.uk"
