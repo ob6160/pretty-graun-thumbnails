@@ -7,7 +7,15 @@ Created for the Guardian Fastly Hack day. I aimed to improve the rendering of ou
 
 **And the result of the hack:**
 
+**Top alignment**
 <img src="https://subtly-ancient-mayfly.edgecompute.app/thumbnail.jpg?article=https://www.theguardian.com/politics/2022/jan/26/tory-mps-poised-to-send-letters-of-no-confidence-in-pm-after-partygate-report" alt="the output from this program, adding a newer version of the logo as well as the article title and short description" width="300px">
+
+**Bottom alignment**
+<img src="https://subtly-ancient-mayfly.edgecompute.app/thumbnail.jpg?article=https://www.theguardian.com/politics/2022/jan/26/tory-mps-poised-to-send-letters-of-no-confidence-in-pm-after-partygate-reporti&align=bottom" alt="the output from this program, adding a newer version of the logo as well as the article title and short description" width="300px">
+
+**Dark mode**
+<img src="https://subtly-ancient-mayfly.edgecompute.app/thumbnail.jpg?lightMode=false&article=https://m.code.dev-theguardian.com/artanddesign/2021/oct/27/two-lovers-kiss-behind-a-tree-clifford-prince-kings-best-photograph" alt="the output from this program, adding a newer version of the logo as well as the article title and short description" width="300px">
+
 
 ---
 
