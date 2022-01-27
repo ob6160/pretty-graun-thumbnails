@@ -63,6 +63,7 @@ fn main(req: Request) -> Result<Response, Error> {
 
         "/thumbnail.jpg" => {
             let article_url = decode(req.get_query_parameter("article").unwrap_or("https://m.code.dev-theguardian.com/artanddesign/2021/oct/27/two-lovers-kiss-behind-a-tree-clifford-prince-kings-best-photograph"))?;
+
             let mut page_req = Request::get([&article_url.to_string(), ".json"].join(""));
             page_req.set_header("host", "www.theguardian.com");
 
@@ -127,19 +128,25 @@ fn main(req: Request) -> Result<Response, Error> {
             let graun_text_bg = Rgba([246u8, 246u8, 246u8, 255u8]);
             let white = Rgba([255u8, 255u8, 255u8, 255u8]);
 
+            let align = req.get_query_parameter("align").unwrap_or("top");
+            let mut big_boy_shift = 0;
+            if align == "bottom" {
+                big_boy_shift = 200;
+            }
             let isLightModeOn = (req.get_query_parameter("lightMode").unwrap_or("true")).parse().unwrap();
 
-            let mut title_rect = Rect::at(0, 0).of_size(500, 80);
+            let mut title_rect = Rect::at(0, big_boy_shift).of_size(500, 80);
             draw_filled_rect_mut(&mut image, title_rect, graun_blue);
 
+
             if isLightModeOn {
-                let mut title_text_rect = Rect::at(0, 0).of_size(325, 80);
+                let mut title_text_rect = Rect::at(0, big_boy_shift).of_size(325, 80);
                 draw_filled_rect_mut(&mut image, title_text_rect, graun_text_bg);
             }
 
 
             let resized_graun = image::imageops::resize(&graun_loaded, 156, 65, FilterType::Lanczos3);
-            image::imageops::overlay(&mut image, &resized_graun, 335, 5);
+            image::imageops::overlay(&mut image, &resized_graun, 335, 5+big_boy_shift as u32);
 
 
             let graun_font = Vec::from(include_bytes!("GuardianTextEgyptian-Regular.ttf") as &[u8]);
@@ -159,7 +166,7 @@ fn main(req: Request) -> Result<Response, Error> {
             let text_modifier = if count >= 1 { 10 } else {0};
             for (i, headline_chunk) in &mut nummy_pieces {
 
-                draw_text_mut(&mut image, normal_text_colour, 5, (i as f32 * height) as u32 + 35 as u32 - text_modifier as u32, scale, &graun_font, &headline_chunk.trim_start());
+                draw_text_mut(&mut image, normal_text_colour, 5, (i as f32 * height) as u32 + 35 as u32 - text_modifier + big_boy_shift as u32, scale, &graun_font, &headline_chunk.trim_start());
             }
 
 
@@ -169,7 +176,7 @@ fn main(req: Request) -> Result<Response, Error> {
             };
 
             let headline_colour = if isLightModeOn {Rgba([199u8, 0u8, 0u8, 255u8])} else { graun_orange };
-            draw_text_mut(&mut image, headline_colour, 5, 0, scale, &graun_font, &tagline);
+            draw_text_mut(&mut image, headline_colour, 5, big_boy_shift as u32, scale, &graun_font, &tagline);
 
             let mut v = Vec::with_capacity((500 * 300) as usize);
             let mut je = image::codecs::png::PngEncoder::new(&mut v);
