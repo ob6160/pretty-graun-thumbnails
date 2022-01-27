@@ -131,8 +131,9 @@ fn main(req: Request) -> Result<Response, Error> {
             let align = req.get_query_parameter("align").unwrap_or("top");
             let mut big_boy_shift = 0;
             if align == "bottom" {
-                big_boy_shift = 200;
+                big_boy_shift = 220;
             }
+
             let isLightModeOn = (req.get_query_parameter("lightMode").unwrap_or("true")).parse().unwrap();
 
             let mut title_rect = Rect::at(0, big_boy_shift).of_size(500, 80);
